@@ -6,6 +6,7 @@ private:
 	int size, *arr;
 	int maxSum, leftIndex, rightIndex;
 	void BruteForce();
+	void KandaneMethod();
 public:
 	MaxSubArray();
 	MaxSubArray(int n, int temp[]);

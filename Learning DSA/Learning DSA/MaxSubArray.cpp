@@ -39,7 +39,8 @@ void MaxSubArray::PrintArrayProp()
 
 void MaxSubArray::FindMaxSum()
 {
-	BruteForce();
+	//BruteForce();
+	KandaneMethod();
 }
 
 //Uses brute force to find the max sum of sub array
@@ -59,6 +60,26 @@ void MaxSubArray::BruteForce()
 				leftIndex = i;
 				rightIndex = i+j-1;
 			}
+		}
+	}
+}
+
+
+
+void MaxSubArray::KandaneMethod()
+{
+	int tempMax = 0;
+
+	for (int i = 0; i < size; i++)
+	{
+		tempMax += arr[i];
+
+		if (tempMax < 0)
+			tempMax = 0;
+
+		if (maxSum < tempMax)
+		{
+			maxSum = tempMax;
 		}
 	}
 }
