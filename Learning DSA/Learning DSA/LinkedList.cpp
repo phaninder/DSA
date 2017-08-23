@@ -129,3 +129,23 @@ void LinkedList::Delete(int e)
 		}
 	}
 }
+
+void LinkedList::Reverse()
+{
+	if (list->next == nullptr)
+	{
+		cout << "List is empty" << endl;
+	}
+	node *current, *prev, *next;
+	current = list->next;
+	prev = nullptr;
+	next = nullptr;
+	while (current != nullptr)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	list->next = prev;
+}

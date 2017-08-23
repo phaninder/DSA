@@ -33,15 +33,18 @@ void ClearScreen()
 void LinkedListProblem()
 {
 	int choice=-1;
+	int quitChoice = 6;
 	LinkedList *LinkedListObj = new LinkedList();
-	while (choice != 5)
+	while (choice != quitChoice)
 	{
-		cout << "Enter your choice:" << endl;
+		cout << "Options:" << endl;
 		cout << "1. Insert value to list" << endl;
 		cout << "2. Display List values" << endl;
 		cout << "3. Search" << endl;
 		cout << "4. Delete" << endl;
-		cout << "5. Quit" << endl;
+		cout << "5. Reverse" << endl;
+		cout << "6. Quit" << endl;
+		cout << "Enter your choice:" << endl;
 		cin >> choice;
 
 
@@ -83,7 +86,13 @@ void LinkedListProblem()
 			}
 			case 5:
 			{
-				
+				ClearScreen();
+				cout << "Reversing List" << endl;
+				LinkedListObj->Reverse();
+				break;
+			}
+			case 6:
+			{
 				break;
 			}
 			default:
@@ -92,6 +101,10 @@ void LinkedListProblem()
 				break;
 			}
 		}
+
+		cout << endl;
+		cout << endl;
+		cout << endl;
 	}
 }
 

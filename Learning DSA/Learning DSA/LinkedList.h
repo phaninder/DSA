@@ -19,5 +19,5 @@ public:
 	void Display();
 	void Search(int e);
 	void Delete(int e);
-
+	void Reverse();
 };
