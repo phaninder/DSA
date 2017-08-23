@@ -146,10 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MaxSubArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="MaxSubArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
