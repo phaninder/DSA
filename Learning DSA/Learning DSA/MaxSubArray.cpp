@@ -40,7 +40,8 @@ void MaxSubArray::PrintArrayProp()
 void MaxSubArray::FindMaxSum()
 {
 	//BruteForce();
-	KandaneMethod();
+	//KandaneMethod();
+	maxSum = DivideAndConquer(arr, 0, size-1);
 }
 
 //Uses brute force to find the max sum of sub array
@@ -82,4 +83,39 @@ void MaxSubArray::KandaneMethod()
 			maxSum = tempMax;
 		}
 	}
+}
+
+int MaxSubArray::DivideAndConquer(int a[], int lowerIndex, int higherIndex)
+{
+	if (lowerIndex == higherIndex)
+		return a[lowerIndex];
+	int middleIndex = (lowerIndex + higherIndex) / 2;
+	
+	int leftMSS = DivideAndConquer(a, lowerIndex, middleIndex);
+	int rightMSS = DivideAndConquer(a, middleIndex + 1, higherIndex);
+
+	int tempSum = 0, sumLeft = INT32_MIN, sumRight = INT32_MIN;
+	
+	for (int i = middleIndex; i >= lowerIndex; i--)
+	{
+		tempSum += a[i];
+		if (tempSum > sumLeft)
+			sumLeft = tempSum;
+	}
+
+	tempSum = 0;
+	for (int j = middleIndex+1; j <= higherIndex; j++)
+	{
+		tempSum += a[j];
+		if (tempSum > sumRight)
+			sumRight = tempSum;
+	}
+	int ans = FindMax(leftMSS, rightMSS);
+
+	return(FindMax(ans, (sumLeft + sumRight)));
+}
+
+int MaxSubArray::FindMax(int a, int b)
+{
+	return (a > b) ? a : b;
 }
