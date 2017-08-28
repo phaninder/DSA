@@ -19,6 +19,7 @@ void LinkedList::Insert(int e)
 		tempList->value = e;
 		tempList->next = nullptr;
 		list->next = tempList;
+		noOfElements++;
 		return;
 	}
 
@@ -36,7 +37,47 @@ void LinkedList::Insert(int e)
 	dummyNode->next = nullptr;
 
 	tempPtr->next = dummyNode;
+	noOfElements++;
 
+}
+
+void LinkedList::InsertAt(int index, int e)
+{
+	if (index < 0)
+	{
+		cout << "Cannot insert at negative index";
+		return;
+	}
+
+	// if at the beginning
+	if (index == 0)
+	{
+		node *temp = new node();
+		temp->value = e;
+		temp->next = list->next;
+		list->next = temp;
+		noOfElements++;
+	}
+	else
+	{
+		if (index > noOfElements)
+		{
+			cout << "Index out of range, can't insert" << endl;
+			return;
+		}
+
+		node *temp,*dummyNode = new node();
+		temp = list;//start of node
+
+		for (int i = 0; i < index; i++)
+		{
+			temp = temp->next;
+		}
+		dummyNode->value = e;
+		dummyNode->next = temp->next;
+		temp->next = dummyNode;
+		noOfElements++;
+	}
 }
 
 void LinkedList::Display()
@@ -48,12 +89,33 @@ void LinkedList::Display()
 	}
 	node *temp;
 	temp = list->next;
-	cout << "List Elements:" << endl;
+	cout << "No of elements: "<<noOfElements<<"\nList Elements:" << endl;
 	while (temp != nullptr)
 	{
 		cout << "" << temp->value << endl;
 		temp = temp->next;
 	}
+}
+
+void LinkedList::DisplayElementAt(int index)
+{
+	if (index > noOfElements)
+	{
+		cout << "Out of range" << endl;
+		return;
+	}
+
+	if (noOfElements <= 0)
+	{
+		cout << "List is empty" << endl;
+		return;
+	}
+	node *temp = list;
+	for (int i = 0; i <= index; i++)
+	{
+		temp = temp->next;
+	}
+	cout << "Value is: " << temp->value << endl;
 }
 
 void LinkedList::Search(int e)
@@ -127,7 +189,43 @@ void LinkedList::Delete(int e)
 			delNode->next = nullptr;
 			delete(delNode);
 		}
+		noOfElements--;
 	}
+	else
+		cout << "Element not found in List" << endl;
+}
+
+void LinkedList::DeleteAt(int index)
+{
+	if (index > noOfElements)
+	{
+		cout << "Index is out of range" << endl;
+		return;
+	}
+	
+	node *temp;
+	temp = list;
+
+	for (int i = 0; i < index; i++)
+	{
+		temp = temp->next;
+	}
+
+	if (temp != nullptr)
+	{
+		//We are having only one node
+		if (temp->next != nullptr)
+		{		
+			node *delNode;
+			delNode = temp->next;
+			temp->next = delNode->next;
+			delNode->next = nullptr;
+			delete(delNode);
+			noOfElements--;
+		}
+	}
+	else
+		cout << "List is empty" << endl;
 }
 
 void LinkedList::Reverse()
