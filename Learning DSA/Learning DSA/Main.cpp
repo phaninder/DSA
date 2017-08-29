@@ -6,6 +6,7 @@
 #include "Stack.h"
 #include "Queue.h"
 #include "Sort.h"
+#include "Search.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ void DoublyLinkedListProblem();
 void StackProblem();
 void QueueProblem();
 void SortingAlgorithms();
+void SearchAlgorithms();
 
 int main()
 {
@@ -45,8 +47,10 @@ int main()
 	//QueueProblem();
 
 	//Sorting Algorithms
-	SortingAlgorithms();
+	//SortingAlgorithms();
 
+	//Searching
+	SearchAlgorithms();
 	system("PAUSE");
 	return 0;
 }
@@ -55,7 +59,72 @@ void ClearScreen()
 {
 	system("cls");
 }
+void SearchAlgorithms()
+{
+	int choice = -1;
+	int quitOption = 5;
+	Search searchAlgo;
 
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Enter values to array" << endl;
+		cout << "2. Display Array values" << endl;
+		cout << "3. Linear Search" << endl;
+		cout << "4. Binary Search" << endl;
+		cout << "5. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			searchAlgo.CreateArray();
+			break;
+		}
+
+		case 2:
+		{
+			ClearScreen();
+			searchAlgo.Display();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			int searchVal;
+			cout << "Enter value to search:" << endl;
+			cin >> searchVal;
+			searchAlgo.LinearSearch(searchVal);
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			int searchVal;
+			cout << "Enter value to search:" << endl;
+			cin >> searchVal;
+			searchAlgo.BinarySearch(searchVal);
+			break;
+		}
+		case 5:
+		{
+			ClearScreen();
+			break;
+		}
+		default:
+		{
+			cout << "Enter valid choice" << endl;
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
+}
 void SortingAlgorithms()
 {
 	int choice = -1;
@@ -142,7 +211,7 @@ void SortingAlgorithms()
 void StackProblem()
 {
 	int choice = -1;
-	int quitOption=5;
+	int quitOption = 5;
 	Stack *stack = new Stack();
 	while (choice != quitOption)
 	{
@@ -158,43 +227,43 @@ void StackProblem()
 
 		switch (choice)
 		{
-			case 1:
-			{
-				ClearScreen();
-				int val;
-				cout << "Enter value: " << endl;
-				cin >> val;
-				stack->Push(val);
-				break;
-			}
+		case 1:
+		{
+			ClearScreen();
+			int val;
+			cout << "Enter value: " << endl;
+			cin >> val;
+			stack->Push(val);
+			break;
+		}
 
-			case 2:
-			{
-				ClearScreen();
-				stack->Top();
-				break;
-			}
-			case 3:
-			{
-				ClearScreen();
-				stack->Pop();
-				break;
-			}
-			case 4:
-			{
-				ClearScreen();
-				stack->Display();
-				break;
-			}
-			case 5:
-			{
-				break;
-			}
-			default:
-			{
-				cout << "Enter valid choice" << endl;
-				break;
-			}
+		case 2:
+		{
+			ClearScreen();
+			stack->Top();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			stack->Pop();
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			stack->Display();
+			break;
+		}
+		case 5:
+		{
+			break;
+		}
+		default:
+		{
+			cout << "Enter valid choice" << endl;
+			break;
+		}
 		}
 		cout << endl;
 		cout << endl;
