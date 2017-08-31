@@ -164,5 +164,45 @@ void Sort::Merge(int left[], int right[], int A[],int leftASize,int rightASize,i
 
 void Sort::QuickSort()
 {
+	QuickSorting(A, 0, size-1);
+}
 
+void Sort::QuickSorting(int A[], int lb, int ub)
+{
+	if (lb >= ub)
+		return;
+	int partionIndex = Partition(A, lb, ub);
+	QuickSorting(A, lb, partionIndex-1);
+	QuickSorting(A, partionIndex + 1, ub);
+}
+
+int Sort::Partition(int A[], int lb, int ub)
+{
+	int head=lb, tail=ub;
+	int mid = (head + tail) / 2;
+	int partitionEle = A[mid];
+	int temp;
+
+	while (head < tail)
+	{
+		if (A[head] < partitionEle)
+		{
+			head++;
+		}
+
+		if (A[tail] > partitionEle)
+		{
+			tail--;
+		}
+
+		if (head < tail)
+		{
+			temp = A[head];
+			A[head] = A[tail];
+			A[tail] = temp;
+		}
+	}
+
+	A[tail] = partitionEle;
+	return tail;
 }

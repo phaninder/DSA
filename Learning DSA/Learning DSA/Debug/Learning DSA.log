@@ -1,11 +1,6 @@
-﻿  Stack.cpp
-  Sort.cpp
-  Queue.cpp
-  MaxSubArray.cpp
-  Main.cpp
-  LinkedList.cpp
-  DoublyLinkedList.cpp
-  BinaryTree.cpp
+﻿  BinaryTree.cpp
   Generating Code...
+  Skipping... (no relevant changes detected)
+  Main.cpp
   Learning DSA.vcxproj -> E:\Learning Projects\DSA\Learning DSA\Debug\Learning DSA.exe
   Learning DSA.vcxproj -> E:\Learning Projects\DSA\Learning DSA\Debug\Learning DSA.pdb (Full PDB)

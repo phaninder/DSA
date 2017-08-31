@@ -36,7 +36,11 @@
     <ClCompile Include="Sort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="BinaryTree.cpp">
+=======
+    <ClCompile Include="Search.cpp">
+>>>>>>> 5d3d163e1cc2ee69ff3c90b42567e5d2e158fefc
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +63,11 @@
     <ClInclude Include="Sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="BinaryTree.h">
+=======
+    <ClInclude Include="Search.h">
+>>>>>>> 5d3d163e1cc2ee69ff3c90b42567e5d2e158fefc
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

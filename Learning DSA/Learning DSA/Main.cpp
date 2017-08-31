@@ -7,6 +7,7 @@
 #include "Queue.h"
 #include "Sort.h"
 #include "BinaryTree.h"
+#include "Search.h"
 
 using namespace std;
 
@@ -18,6 +19,8 @@ void StackProblem();
 void QueueProblem();
 void SortingAlgorithms();
 void TreeAlgorithm();
+void SearchAlgorithms();
+
 
 int main()
 {
@@ -49,8 +52,11 @@ int main()
 	//Sorting Algorithms
 	//SortingAlgorithms();
 
+	//Searching
+	//SearchAlgorithms();
+
 	//Binary search tree
-	void TreeAlgorithm();
+	TreeAlgorithm();
 
 	system("PAUSE");
 	return 0;
@@ -60,11 +66,77 @@ void ClearScreen()
 {
 	system("cls");
 }
+void SearchAlgorithms()
+{
+	int choice = -1;
+	int quitOption = 5;
+	Search searchAlgo;
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Enter values to array" << endl;
+		cout << "2. Display Array values" << endl;
+		cout << "3. Linear Search" << endl;
+		cout << "4. Binary Search" << endl;
+		cout << "5. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			searchAlgo.CreateArray();
+			break;
+		}
+
+		case 2:
+		{
+			ClearScreen();
+			searchAlgo.Display();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			int searchVal;
+			cout << "Enter value to search:" << endl;
+			cin >> searchVal;
+			searchAlgo.LinearSearch(searchVal);
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			int searchVal;
+			cout << "Enter value to search:" << endl;
+			cin >> searchVal;
+			searchAlgo.BinarySearch(searchVal);
+			break;
+		}
+		case 5:
+		{
+			ClearScreen();
+			break;
+		}
+		default:
+		{
+			cout << "Enter valid choice" << endl;
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
+}
 
 void TreeAlgorithm()
 {
 	int choice = -1;
-	int quitOption = 3;
+	int quitOption = 8;
 	BinarySearchTree tree;
 
 	while (choice != quitOption)
@@ -72,12 +144,18 @@ void TreeAlgorithm()
 		cout << "Options:" << endl;
 		cout << "1. Add values to tree" << endl;
 		cout << "2. Display tree values" << endl;
-		cout << "3. Quit" << endl;
+		cout << "3. Find Min" << endl;
+		cout << "4. Find Max" << endl;
+		cout << "5. Find Height" << endl;
+		cout << "8. Quit" << endl;
+		cout << "Enter your choice:" << endl;
 		cin >> choice;
+
 		switch (choice)
 		{
 			case 1:
 			{
+				ClearScreen();
 				int val;
 				cout << "Enter data to add to tree" << endl;
 				cin >> val;
@@ -86,10 +164,29 @@ void TreeAlgorithm()
 			}
 			case 2:
 			{
+				ClearScreen();
 				tree.Display();
 				break;
 			}
 			case 3:
+			{
+				ClearScreen();
+				tree.FindMin();
+				break;
+			}
+			case 4:
+			{
+				ClearScreen();
+				tree.FindMax();
+				break;
+			}
+			case 5:
+			{
+				ClearScreen();
+				tree.FindHeight();
+				break;
+			}
+			case 8:
 			{
 				break;
 			}
@@ -99,7 +196,6 @@ void TreeAlgorithm()
 				break;
 			}
 		}
-		ClearScreen();
 	}
 }
 
