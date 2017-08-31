@@ -6,6 +6,7 @@
 #include "Stack.h"
 #include "Queue.h"
 #include "Sort.h"
+#include "BinaryTree.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ void DoublyLinkedListProblem();
 void StackProblem();
 void QueueProblem();
 void SortingAlgorithms();
+void TreeAlgorithm();
 
 int main()
 {
@@ -45,7 +47,10 @@ int main()
 	//QueueProblem();
 
 	//Sorting Algorithms
-	SortingAlgorithms();
+	//SortingAlgorithms();
+
+	//Binary search tree
+	void TreeAlgorithm();
 
 	system("PAUSE");
 	return 0;
@@ -54,6 +59,48 @@ int main()
 void ClearScreen()
 {
 	system("cls");
+}
+
+void TreeAlgorithm()
+{
+	int choice = -1;
+	int quitOption = 3;
+	BinarySearchTree tree;
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Add values to tree" << endl;
+		cout << "2. Display tree values" << endl;
+		cout << "3. Quit" << endl;
+		cin >> choice;
+		switch (choice)
+		{
+			case 1:
+			{
+				int val;
+				cout << "Enter data to add to tree" << endl;
+				cin >> val;
+				tree.AddNode(val);
+				break;
+			}
+			case 2:
+			{
+				tree.Display();
+				break;
+			}
+			case 3:
+			{
+				break;
+			}
+			default:
+			{
+				cout << "Enter proper choice" << endl;
+				break;
+			}
+		}
+		ClearScreen();
+	}
 }
 
 void SortingAlgorithms()
@@ -142,7 +189,7 @@ void SortingAlgorithms()
 void StackProblem()
 {
 	int choice = -1;
-	int quitOption=5;
+	int quitOption = 5;
 	Stack *stack = new Stack();
 	while (choice != quitOption)
 	{
@@ -158,43 +205,43 @@ void StackProblem()
 
 		switch (choice)
 		{
-			case 1:
-			{
-				ClearScreen();
-				int val;
-				cout << "Enter value: " << endl;
-				cin >> val;
-				stack->Push(val);
-				break;
-			}
+		case 1:
+		{
+			ClearScreen();
+			int val;
+			cout << "Enter value: " << endl;
+			cin >> val;
+			stack->Push(val);
+			break;
+		}
 
-			case 2:
-			{
-				ClearScreen();
-				stack->Top();
-				break;
-			}
-			case 3:
-			{
-				ClearScreen();
-				stack->Pop();
-				break;
-			}
-			case 4:
-			{
-				ClearScreen();
-				stack->Display();
-				break;
-			}
-			case 5:
-			{
-				break;
-			}
-			default:
-			{
-				cout << "Enter valid choice" << endl;
-				break;
-			}
+		case 2:
+		{
+			ClearScreen();
+			stack->Top();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			stack->Pop();
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			stack->Display();
+			break;
+		}
+		case 5:
+		{
+			break;
+		}
+		default:
+		{
+			cout << "Enter valid choice" << endl;
+			break;
+		}
 		}
 		cout << endl;
 		cout << endl;
