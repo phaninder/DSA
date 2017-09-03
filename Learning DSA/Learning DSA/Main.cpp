@@ -136,7 +136,7 @@ void SearchAlgorithms()
 void TreeAlgorithm()
 {
 	int choice = -1;
-	int quitOption = 8;
+	int quitOption = 100;
 	BinarySearchTree tree;
 
 	while (choice != quitOption)
@@ -147,7 +147,12 @@ void TreeAlgorithm()
 		cout << "3. Find Min" << endl;
 		cout << "4. Find Max" << endl;
 		cout << "5. Find Height" << endl;
-		cout << "8. Quit" << endl;
+		cout << "6. Inorder traversal" << endl;
+		cout << "7. Pre order traversal" << endl;
+		cout << "8. Post order traversal" << endl;
+		cout << "9. Check if binary tree" << endl;
+		cout << "10. Delete a node" << endl;
+		cout << "100. Quit" << endl;
 		cout << "Enter your choice:" << endl;
 		cin >> choice;
 
@@ -165,7 +170,7 @@ void TreeAlgorithm()
 			case 2:
 			{
 				ClearScreen();
-				tree.Display();
+				tree.LevelOrderTraversal();
 				break;
 			}
 			case 3:
@@ -186,7 +191,39 @@ void TreeAlgorithm()
 				tree.FindHeight();
 				break;
 			}
+			case 6:
+			{
+				ClearScreen();
+				tree.InorderTraversal();
+				break;
+			}
+			case 7:
+			{
+				ClearScreen();
+				tree.PreOrderTraversal();
+				break;
+			}
 			case 8:
+			{
+				ClearScreen();
+				tree.PostOrderTraversal();
+				break;
+			}
+			case 9:
+			{
+				ClearScreen();
+				tree.CheckIfBinaryTree();
+				break;
+			}
+			case 10:
+			{
+				ClearScreen();
+				int val;
+				cout << "Enter val to delete" << endl;
+				cin >> val;
+				tree.DeleteNode(val);
+			}
+			case 100:
 			{
 				break;
 			}
@@ -196,6 +233,9 @@ void TreeAlgorithm()
 				break;
 			}
 		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
 	}
 }
 
