@@ -8,6 +8,7 @@
 #include "Sort.h"
 #include "BinaryTree.h"
 #include "Search.h"
+#include "Graph.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ void QueueProblem();
 void SortingAlgorithms();
 void TreeAlgorithm();
 void SearchAlgorithms();
-
+void GraphAlgorithms();
 
 int main()
 {
@@ -56,15 +57,18 @@ int main()
 	//SearchAlgorithms();
 
 	//Binary search tree
-	TreeAlgorithm();
+	//TreeAlgorithm();
 
-	system("PAUSE");
+	// Tree Algorithms
+	GraphAlgorithms();
+
+	//system("PAUSE");
 	return 0;
 }
 
 void ClearScreen()
 {
-	system("cls");
+//	system("cls");
 }
 void SearchAlgorithms()
 {
@@ -133,6 +137,70 @@ void SearchAlgorithms()
 	}
 }
 
+void GraphAlgorithms()
+{
+	int choice = -1;
+	int quitOption = 5;
+
+	Graph graphAlgo(true);
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Enter Edges to Graph" << endl;
+		cout << "2. Print Graph values" << endl;
+		cout << "3. Breadth First Search" << endl;
+		cout << "4. Depth First Search" << endl;
+		cout << "5. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			graphAlgo.ReadGraph();
+			break;
+		}
+
+		case 2:
+		{
+			ClearScreen();
+			graphAlgo.PrintGraph();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			graphAlgo.BreadthFirstSearch();
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			graphAlgo.DepthFirstSearch();
+			break;
+		}
+		case 5:
+		{
+			//ClearScreen();
+			graphAlgo.Free();
+			break;
+		}
+		default:
+		{
+			cout << "Enter valid choice" << endl;
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
+}
+
+
 void TreeAlgorithm()
 {
 	int choice = -1;
@@ -158,80 +226,80 @@ void TreeAlgorithm()
 
 		switch (choice)
 		{
-			case 1:
-			{
-				ClearScreen();
-				int val;
-				cout << "Enter data to add to tree" << endl;
-				cin >> val;
-				tree.AddNode(val);
-				break;
-			}
-			case 2:
-			{
-				ClearScreen();
-				tree.LevelOrderTraversal();
-				break;
-			}
-			case 3:
-			{
-				ClearScreen();
-				tree.FindMin();
-				break;
-			}
-			case 4:
-			{
-				ClearScreen();
-				tree.FindMax();
-				break;
-			}
-			case 5:
-			{
-				ClearScreen();
-				tree.FindHeight();
-				break;
-			}
-			case 6:
-			{
-				ClearScreen();
-				tree.InorderTraversal();
-				break;
-			}
-			case 7:
-			{
-				ClearScreen();
-				tree.PreOrderTraversal();
-				break;
-			}
-			case 8:
-			{
-				ClearScreen();
-				tree.PostOrderTraversal();
-				break;
-			}
-			case 9:
-			{
-				ClearScreen();
-				tree.CheckIfBinaryTree();
-				break;
-			}
-			case 10:
-			{
-				ClearScreen();
-				int val;
-				cout << "Enter val to delete" << endl;
-				cin >> val;
-				tree.DeleteNode(val);
-			}
-			case 100:
-			{
-				break;
-			}
-			default:
-			{
-				cout << "Enter proper choice" << endl;
-				break;
-			}
+		case 1:
+		{
+			ClearScreen();
+			int val;
+			cout << "Enter data to add to tree" << endl;
+			cin >> val;
+			tree.AddNode(val);
+			break;
+		}
+		case 2:
+		{
+			ClearScreen();
+			tree.LevelOrderTraversal();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			tree.FindMin();
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			tree.FindMax();
+			break;
+		}
+		case 5:
+		{
+			ClearScreen();
+			tree.FindHeight();
+			break;
+		}
+		case 6:
+		{
+			ClearScreen();
+			tree.InorderTraversal();
+			break;
+		}
+		case 7:
+		{
+			ClearScreen();
+			tree.PreOrderTraversal();
+			break;
+		}
+		case 8:
+		{
+			ClearScreen();
+			tree.PostOrderTraversal();
+			break;
+		}
+		case 9:
+		{
+			ClearScreen();
+			tree.CheckIfBinaryTree();
+			break;
+		}
+		case 10:
+		{
+			ClearScreen();
+			int val;
+			cout << "Enter val to delete" << endl;
+			cin >> val;
+			tree.DeleteNode(val);
+		}
+		case 100:
+		{
+			break;
+		}
+		default:
+		{
+			cout << "Enter proper choice" << endl;
+			break;
+		}
 		}
 		cout << endl;
 		cout << endl;
