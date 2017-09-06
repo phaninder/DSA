@@ -25,17 +25,19 @@ private:
 	{
 		int noOfVertices;
 		int noOfEdges;
-		int *degree;
-		EdgeNode **edgeNode;
+		int degree[MAXVERTICES];
+		EdgeNode *edgeNode[MAXVERTICES];
 	};
 
 	GraphNode graph;
+	int visited[MAXVERTICES] ;
+	int parent[MAXVERTICES];
 	//EdgeNode * temp;
 	bool isDirected;
-	ColorCode *color;
+	ColorCode color[MAXVERTICES];
 	void InsertEdge(int x, int y, int weight, bool isDirected);
-	void BreadthFirstSearchHelper(int *visited, int startIndex,int *parents);
-	void DepthFirstSearchHelper(int *visited, int startIndex);
+	void BreadthFirstSearchHelper( int startIndex,int *parents);
+	void DepthFirstSearchHelper( int startIndex);
 	void CheckColor(int x, int y);
 	void PrintColor();
 public:

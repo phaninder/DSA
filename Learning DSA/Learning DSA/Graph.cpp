@@ -11,11 +11,11 @@ Graph::Graph()
 	graph.noOfEdges = 0;
 	graph.noOfVertices = 0;
 
-	/*for (int i = 0; i < MAXVERTICES; i++)
+	for (int i = 0; i < MAXVERTICES; i++)
 	{
 		graph.degree[i] = 0;
 		graph.edgeNode[i] = NULL;
-	}*/
+	}
 }
 
 Graph::Graph(bool directed)
@@ -24,45 +24,33 @@ Graph::Graph(bool directed)
 	graph.noOfEdges = 0;
 	graph.noOfVertices = 0;
 
-	//for (int i = 0; i < MAXVERTICES; i++)
-	//{
-	//	graph.degree[i] = 0;
-	//	graph.edgeNode[i] = NULL;
-	//}
+	for (int i = 0; i < MAXVERTICES; i++)
+	{
+		graph.degree[i] = 0;
+		graph.edgeNode[i] = NULL;	
+		visited[i] = -1;
+		parent[i] = -1;
+	}
 }
 
 Graph::~Graph()
 {
-	//for (int i = 0; i < graph.noOfEdges; i++)
-	//{
-	//	delete(graph.edgeNode[i]);
-	//	graph.edgeNode[i] = NULL;
-	//}
-	//delete(graph.edgeNode);
-
-	////delete(temp);
-	////temp = nullptr;
-	//delete(color);
-	//color = nullptr;
+	/*for (int i = 0; i < graph.noOfEdges; i++)
+	{
+		delete(graph.edgeNode[i]);
+		graph.edgeNode[i] = nullptr;
+	}
+	delete(graph.edgeNode);*/
 }
 
 void Graph::Free()
 {
-	//for (int i = 0; i < graph.noOfVertices; i++)
-	delete(graph.degree);
-	graph.degree = nullptr;
 	for (int i = 0; i < graph.noOfEdges; i++)
 	{
 		delete(graph.edgeNode[i]);
 		graph.edgeNode[i] = nullptr;
 	}
-	delete(graph.edgeNode);
-	graph.edgeNode = nullptr;
-
-	//delete(temp);
-	//temp = nullptr;
-	delete(color);
-	color = nullptr;
+	//delete(graph.edgeNode);
 }
 
 void Graph::ReadGraph()
@@ -74,8 +62,6 @@ void Graph::ReadGraph()
 	cin >> noOfVertices;
 	graph.noOfVertices = noOfVertices;
 
-	color = new ColorCode[noOfVertices];
-	graph.degree = new int[noOfVertices];
 
 	for (int i = 0; i < noOfVertices; i++)
 	{
@@ -86,7 +72,7 @@ void Graph::ReadGraph()
 	cout << "Enter no of Edges in the graph:" << endl;
 	cin >> noOfEdge;
 
-	graph.edgeNode = new EdgeNode*[noOfEdge];
+	//graph.edgeNode = new EdgeNode*[noOfEdge];
 	for (int i = 0; i < noOfEdge; i++)
 	{
 		graph.edgeNode[i] = new EdgeNode;
@@ -126,7 +112,6 @@ void Graph::InsertEdge(int x, int y, int weight, bool directed)
 	//delete(temp);
 	temp = nullptr;
 	delete(temp);
-	cout << "";
 }
 
 void Graph::PrintGraph()
@@ -155,8 +140,6 @@ void Graph::PrintGraph()
 void Graph::BreadthFirstSearch()
 {
 	int noOfVertices = graph.noOfVertices;
-	int *visited = new int(noOfVertices);
-	int *parent = new int(noOfVertices);
 
 	for (int i = 0; i < noOfVertices; i++)
 	{
@@ -165,7 +148,7 @@ void Graph::BreadthFirstSearch()
 	}
 
 	color[0] = White;
-	BreadthFirstSearchHelper(visited, 0, parent);
+	BreadthFirstSearchHelper(0, parent);
 
 	// Check if all the vertices have been visited
 	for (int i = 0; i < noOfVertices; i++)
@@ -173,7 +156,7 @@ void Graph::BreadthFirstSearch()
 		if (visited[i] == 0)
 		{
 			color[i] = White;
-			BreadthFirstSearchHelper(visited, i, parent);
+			BreadthFirstSearchHelper(i, parent);
 		}
 	}
 
@@ -186,9 +169,6 @@ void Graph::BreadthFirstSearch()
 
 	//print color
 	PrintColor();
-
-	delete(visited);
-	delete(parent);
 }
 
 void Graph::PrintColor()
@@ -216,7 +196,7 @@ void Graph::CheckColor(int x, int y)
 }
 
 std::queue<int> queueMem;
-void Graph::BreadthFirstSearchHelper(int *visited, int startIndex, int *parent)
+void Graph::BreadthFirstSearchHelper(int startIndex, int *parent)
 {
 	queueMem.push(startIndex);
 	EdgeNode *temp = new EdgeNode;// = graph.edgeNode[startIndex];
@@ -252,7 +232,6 @@ void Graph::BreadthFirstSearchHelper(int *visited, int startIndex, int *parent)
 void Graph::DepthFirstSearch()
 {
 	int noOfVertices = graph.noOfVertices;
-	int *visited = new int(noOfVertices);
 
 	for (int i = 0; i < noOfVertices; i++)
 	{
@@ -260,7 +239,7 @@ void Graph::DepthFirstSearch()
 	}
 
 	color[0] = White;
-	DepthFirstSearchHelper(visited, 0);
+	DepthFirstSearchHelper(0);
 
 	// Check if all the vertices have been visited
 	for (int i = 0; i < noOfVertices; i++)
@@ -268,16 +247,16 @@ void Graph::DepthFirstSearch()
 		if (visited[i] == 0)
 		{
 			color[i] = White;
-			DepthFirstSearchHelper(visited, 0);
+			DepthFirstSearchHelper(0);
 		}
 	}
 
 	PrintColor();
 
-	delete(visited);
+	//delete(visited);
 }
 
-void Graph::DepthFirstSearchHelper(int *visited, int startIndex)
+void Graph::DepthFirstSearchHelper(int startIndex)
 {
 	EdgeNode *temp = graph.edgeNode[startIndex];
 	cout << temp->val << endl;
@@ -289,7 +268,7 @@ void Graph::DepthFirstSearchHelper(int *visited, int startIndex)
 		startIndex = temp->val;
 		if (visited[startIndex] == 0)
 		{
-			DepthFirstSearchHelper(visited, startIndex);
+			DepthFirstSearchHelper(startIndex);
 		}
 		//else if(visited[startIndex]==1)
 			//return;
