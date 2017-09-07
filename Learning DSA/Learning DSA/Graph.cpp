@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Graph.h"
 #include<queue>
+#include<stack>
 
 using namespace std;
 
@@ -247,7 +248,7 @@ void Graph::DepthFirstSearch()
 		if (visited[i] == 0)
 		{
 			color[i] = White;
-			DepthFirstSearchHelper(0);
+			DepthFirstSearchHelper(i);
 		}
 	}
 
@@ -279,4 +280,60 @@ void Graph::DepthFirstSearchHelper(int startIndex)
 	delete(temp);
 
 	//delete(visited);
+}
+
+stack<int> tpStack;
+void PrintStack()
+{
+	cout << "Size of stack:" << tpStack.size() << endl;
+	cout << "Elements in stack:" << endl;
+	while(!tpStack.empty())
+	{
+		cout << tpStack.top()<<endl;
+		tpStack.pop();
+	}
+}
+
+void Graph::TopologicalSort(int startIndex)
+{
+	while (!tpStack.empty())
+	{
+		tpStack.pop();
+	}
+	for (int i = 0; i < graph.noOfVertices; i++)
+		visited[i] = 0;
+
+	TopologicalSortHelper(startIndex);
+	// Check if all the vertices have been visited
+	for (int i = 0; i < graph.noOfVertices; i++)
+	{
+		if (visited[i] == 0)
+		{
+			TopologicalSortHelper(i);
+		}
+	}
+
+	PrintStack();
+}
+
+
+
+void Graph::TopologicalSortHelper(int startIndex)
+{
+	EdgeNode *nextNode, *temp = graph.edgeNode[startIndex];
+	visited[startIndex] = 1;
+	nextNode = temp->next;
+	while (nextNode != nullptr)
+	{
+		if(visited[(nextNode)->val]!=1)
+			TopologicalSortHelper((nextNode)->val);//send the next node for sorting
+		nextNode = nextNode->next;
+	}
+	tpStack.push(temp->val);
+
+	temp = nullptr;
+	delete(temp);
+
+	nextNode = nullptr;
+	delete(nextNode);
 }

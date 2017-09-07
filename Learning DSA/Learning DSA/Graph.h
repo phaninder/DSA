@@ -40,6 +40,7 @@ private:
 	void DepthFirstSearchHelper( int startIndex);
 	void CheckColor(int x, int y);
 	void PrintColor();
+	void TopologicalSortHelper(int startIndex);
 public:
 	Graph();
 	Graph(bool directed);
@@ -49,4 +50,5 @@ public:
 	void PrintGraph();
 	void BreadthFirstSearch();
 	void DepthFirstSearch();
+	void TopologicalSort(int i);
 };

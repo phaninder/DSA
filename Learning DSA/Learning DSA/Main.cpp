@@ -140,7 +140,7 @@ void SearchAlgorithms()
 void GraphAlgorithms()
 {
 	int choice = -1;
-	int quitOption = 5;
+	int quitOption = 100;
 
 	Graph graphAlgo(true);
 
@@ -151,7 +151,8 @@ void GraphAlgorithms()
 		cout << "2. Print Graph values" << endl;
 		cout << "3. Breadth First Search" << endl;
 		cout << "4. Depth First Search" << endl;
-		cout << "5. Quit" << endl;
+		cout << "5. Topological Sort" << endl;
+		cout << "100. Quit" << endl;
 		cout << "Enter your choice:" << endl;
 		cin >> choice;
 
@@ -183,6 +184,15 @@ void GraphAlgorithms()
 			break;
 		}
 		case 5:
+		{
+			ClearScreen();
+			int index;
+			cout << "Enter Start Index" << endl;
+			cin >> index;
+			graphAlgo.TopologicalSort(index);
+			break;
+		}
+		case 100:
 		{
 			//ClearScreen();
 			graphAlgo.Free();
