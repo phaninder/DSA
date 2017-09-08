@@ -229,16 +229,17 @@ void Graph::BreadthFirstSearchHelper(int startIndex, int *parent)
 	delete(temp);
 
 }
-
+int *currentVertices; //to track current vertices being tracked
 void Graph::DepthFirstSearch()
 {
 	int noOfVertices = graph.noOfVertices;
+	currentVertices = new int[noOfVertices];
 
 	for (int i = 0; i < noOfVertices; i++)
 	{
 		visited[i] = 0;
+		currentVertices[i] = -1;
 	}
-
 	color[0] = White;
 	DepthFirstSearchHelper(0);
 
@@ -259,25 +260,36 @@ void Graph::DepthFirstSearch()
 
 void Graph::DepthFirstSearchHelper(int startIndex)
 {
-	EdgeNode *temp = graph.edgeNode[startIndex];
-	cout << temp->val << endl;
-	visited[temp->val] = 1;
+	EdgeNode *tempNext, *tempCurrent = graph.edgeNode[startIndex];
 	//if(temp->next!=nullptr)
-	temp = temp->next;
-	while (temp != nullptr)
+	tempNext = tempCurrent->next;
+
+	currentVertices[startIndex] = 1;
+	//Set the visited
+	cout << tempCurrent->val << endl;
+	visited[tempCurrent->val] = 1;
+
+	while (tempNext != nullptr)
 	{
-		startIndex = temp->val;
+		startIndex = tempNext->val;
 		if (visited[startIndex] == 0)
 		{
 			DepthFirstSearchHelper(startIndex);
 		}
-		//else if(visited[startIndex]==1)
+		else if (visited[startIndex] == 1 && currentVertices[startIndex] == 1)
+		{
+			cout << "Cycle found between at vertice" << tempNext->val << endl;
+		}
 			//return;
-		temp = temp->next;
+		tempNext = tempNext->next;
 	}
+	currentVertices[startIndex] = -1;
 
-	temp = nullptr;
-	delete(temp);
+	tempNext = nullptr;
+	delete(tempNext);
+
+	tempCurrent = nullptr;
+	delete(tempCurrent);
 
 	//delete(visited);
 }
