@@ -56,7 +56,7 @@ void Graph::Free()
 
 void Graph::ReadGraph()
 {
-	int x, y;
+	int x, y,weight;
 	int noOfVertices, noOfEdge;
 
 	cout << "Enter no of vertices in the graph:" << endl;
@@ -81,13 +81,13 @@ void Graph::ReadGraph()
 		graph.edgeNode[i]->next = nullptr;
 	}
 
-	cout << "Enter pair of Edge";
+	cout << "Enter pair of Edge and edge weight";
 	for (int i = 0; i < noOfEdge; i++)
 	{
 		cin >> x;
 		cin >> y;
-
-		InsertEdge(x, y, 0, isDirected);
+		cin >> weight;
+		InsertEdge(x, y, weight, isDirected);
 	}
 }
 
@@ -120,18 +120,20 @@ void Graph::PrintGraph()
 	EdgeNode *temp;
 	cout << "No of Vertices : " << graph.noOfVertices << endl;
 	cout << "No of Edges in the graph: " << graph.noOfEdges << endl;
+	int currentVert;
 
 	for (int i = 0; i < graph.noOfVertices; i++)
 	{
 		temp = graph.edgeNode[i];
-		cout << "No of Edges for vertices " << temp->val << " : " << graph.degree[i] << "\n" << i << "--";
+		currentVert = temp->val;
+		cout << "No of Edges for vertices " << temp->val << " : " << graph.degree[i] << "\n";// << i << "--";
 		temp = temp->next;
 		while (temp != NULL)
 		{
-			cout << temp->val;
+			cout <<currentVert<< " "<< temp->val<<"-"<<temp->weight<<endl;
 			temp = temp->next;
 		}
-		cout << endl;
+		//cout << endl;
 	}
 
 	temp = nullptr;

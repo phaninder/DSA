@@ -11,6 +11,8 @@
     <ClCompile Include="Sort.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="DisjointSet.cpp" />
+    <ClCompile Include="Kruskal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
@@ -22,5 +24,7 @@
     <ClInclude Include="Sort.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="DisjointSet.h" />
+    <ClInclude Include="Kruskal.h" />
   </ItemGroup>
 </Project>

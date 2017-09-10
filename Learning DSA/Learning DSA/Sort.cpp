@@ -106,6 +106,11 @@ void Sort::MergeSort()
 	MergeProcedure(A, size);
 }
 
+void Sort::MergeSort(int Ar[],int n)
+{
+	MergeProcedure(Ar, n);
+}
+
 void Sort::MergeProcedure(int Arr[], int n)
 {
 	if (n < 2)
@@ -163,6 +168,11 @@ void Sort::Merge(int left[], int right[], int A[],int leftASize,int rightASize,i
 }
 
 void Sort::QuickSort()
+{
+	QuickSorting(A, 0, size-1);
+}
+
+void Sort::QuickSort(int *A,int size)
 {
 	QuickSorting(A, 0, size-1);
 }

@@ -15,7 +15,9 @@ public:
 	void InsertionSort();
 	void SelectionSort();
 	void MergeSort();
+	void MergeSort(int *Ar, int size);
 	void QuickSort();
+	void QuickSort(int *A,int lastIndex);
 	void Display();
 
 };
