@@ -9,8 +9,7 @@
 #include "BinaryTree.h"
 #include "Search.h"
 #include "Graph.h"
-#include "DisjointSet.h"
-#include "Kruskal.h"
+#include "Heap.h"
 
 using namespace std;
 
@@ -24,8 +23,7 @@ void SortingAlgorithms();
 void TreeAlgorithm();
 void SearchAlgorithms();
 void GraphAlgorithms();
-void MakeDisjointSet();
-void KruskalAlgorithm();
+void HeapAlgorightms();
 
 int main()
 {
@@ -66,20 +64,85 @@ int main()
 	// Tree Algorithms
 	//GraphAlgorithms();
 
-	//Disjoint set
-	//MakeDisjointSet();
+	//Heap Algorithm
+	HeapAlgorightms();
 
-	//Kruskal algorithm
-	KruskalAlgorithm();
-
-	system("PAUSE");
+	//system("PAUSE");
 	return 0;
 }
 
 void ClearScreen()
 {
-	//	system("cls");
+//	system("cls");
 }
+
+void HeapAlgorightms()
+{
+	int choice = -1;
+	int quitOption = 100;
+	Heap heap;
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Enter values to array" << endl;
+		cout << "2. Display Heap values" << endl;
+		cout << "3. Build Max Heap" << endl;
+		cout << "4. Do Heap Sort" << endl;
+		cout << "100. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			int n;
+			cout << "Enter no of elements" << endl;
+			cin >> n;
+			if (n > 0)
+				heap.InsertElementsToArray(n);
+			else
+				cout << "Enter a positive value" << endl;
+			break;
+		}
+
+		case 2:
+		{
+			ClearScreen();
+			heap.PrintHeap();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			heap.BuildHeap();
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			heap.HeapSort();
+			break;
+		}
+		case 6:
+		{
+			ClearScreen();
+			break;
+		}
+		default:
+		{
+			cout << "Enter valid choice" << endl;
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
+}
+
 void SearchAlgorithms()
 {
 	int choice = -1;
@@ -147,165 +210,12 @@ void SearchAlgorithms()
 	}
 }
 
-void KruskalAlgorithm()
-{
-	int choice = -1;
-	int quitOption = 100;
-
-	DisjointSet set;
-	Kruskal krus;
-
-	while (choice != quitOption)
-	{
-		cout << "Options:" << endl;
-		cout << "1. Initialise Kruskal Algo" << endl;
-		cout << "2. Add edges and weights to Kruskal" << endl;
-		cout << "3. Form Min Span tree" << endl;
-		cout << "4. Print Tree" << endl;
-		cout << "100. Quit" << endl;
-		cout << "Enter your choice:" << endl;
-		cin >> choice;
-
-		switch (choice)
-		{
-		case 1:
-		{
-			ClearScreen();
-			int x;
-			cout << "Enter no of vertices" << endl;
-			cin >> x;
-			krus.InitialiseVal(x);
-			break;
-		}
-		case 2:
-		{
-			ClearScreen();
-			int noOfVertices;
-			cout << "Enter no of edges" << endl;
-			cin >> noOfVertices;
-			cout << "Enter edge and weights" << endl;
-			int weights;
-			int x, y;
-			for (int i = 0; i < noOfVertices; i++)
-			{
-				cin >> x >> y;
-				cin >> weights;
-				krus.SetValToArray(x,y,weights);
-			}
-			break;
-		}
-		case 3:
-		{
-			ClearScreen();
-			krus.FormMinimumSpanTree();
-			break;
-		}
-		case 4:
-		{
-			ClearScreen();
-			krus.PrintMinSpanTree();
-			break;
-		}
-		default:
-		{
-			break;
-		}
-		}
-		cout << endl;
-		cout << endl;
-		cout << endl;
-	}
-}
-
-void MakeDisjointSet()
-{
-	int choice = -1;
-	int quitOption = 100;
-
-	DisjointSet set;
-
-	while (choice != quitOption)
-	{
-		cout << "Options:" << endl;
-		cout << "1. Create a Disjoint set" << endl;
-		cout << "2. MakeSet" << endl;
-		cout << "3. Union Set" << endl;
-		cout << "4. Print Set" << endl;
-		cout << "5. Has Cycle" << endl;
-		cout << "100. Quit" << endl;
-		cout << "Enter your choice:" << endl;
-		cin >> choice;
-
-		switch (choice)
-		{
-		case 1:
-		{
-			ClearScreen();
-			int noOfVertices;
-			cout << "Enter no of vertices to be inserted" << endl;
-			cin >> noOfVertices;
-			set.CreateSet(noOfVertices);
-			break;
-		}
-		case 2:
-		{
-			ClearScreen();
-			int noOfVertices;
-			cout << "Enter no of vertices to be inserted" << endl;
-			cin >> noOfVertices;
-			for (int i = 0; i < noOfVertices; i++)
-			{
-				int val;
-				cout << "Enter val to be inserted" << endl;
-				cin >> val;
-				set.MakeSet(val);
-			}
-			break;
-		}
-		case 3:
-		{
-			ClearScreen();
-			int x, y;
-			cout << "Enter values to union" << endl;
-			cin >> x >> y;
-			set.Union(x, y);
-			break;
-		}
-		case 4:
-		{
-			ClearScreen();
-			set.PrintSet();
-			break;
-		}
-		case 5:
-		{
-			ClearScreen();
-			int x, y;
-			cout << "Enter values to search for cycle" << endl;
-			cin >> x >> y;
-			cout<<((set.HasCycle(x, y)== 1)? "Has a Cycle":"No Cycle is present")<<endl;
-			break;
-		}
-		
-		default:
-		{
-			break;
-		}
-		}
-		cout << endl;
-		cout << endl;
-		cout << endl;
-	}
-
-
-}
-
 void GraphAlgorithms()
 {
 	int choice = -1;
-	int quitOption = 100;
+	int quitOption = 5;
 
-	Graph graphAlgo;
+	Graph graphAlgo(true);
 
 	while (choice != quitOption)
 	{
@@ -314,8 +224,7 @@ void GraphAlgorithms()
 		cout << "2. Print Graph values" << endl;
 		cout << "3. Breadth First Search" << endl;
 		cout << "4. Depth First Search" << endl;
-		cout << "5. Topological Sort" << endl;
-		cout << "100. Quit" << endl;
+		cout << "5. Quit" << endl;
 		cout << "Enter your choice:" << endl;
 		cin >> choice;
 
@@ -347,15 +256,6 @@ void GraphAlgorithms()
 			break;
 		}
 		case 5:
-		{
-			ClearScreen();
-			int index;
-			cout << "Enter Start Index" << endl;
-			cin >> index;
-			graphAlgo.TopologicalSort(index);
-			break;
-		}
-		case 100:
 		{
 			//ClearScreen();
 			graphAlgo.Free();
