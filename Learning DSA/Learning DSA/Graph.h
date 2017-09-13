@@ -6,6 +6,13 @@
 
 class Graph
 {
+	public :
+	struct EdgeNode
+	{
+		int val;
+		int weight;
+		EdgeNode *next;
+	};
 private:
 	enum ColorCode
 	{
@@ -14,12 +21,7 @@ private:
 		White = 1
 	};
 
-	struct EdgeNode
-	{
-		int val;
-		int weight;
-		EdgeNode *next;
-	};
+	
 
 	struct GraphNode
 	{
@@ -41,14 +43,17 @@ private:
 	void CheckColor(int x, int y);
 	void PrintColor();
 	void TopologicalSortHelper(int startIndex);
-public:
+public:	
 	Graph();
 	Graph(bool directed);
 	~Graph();
 	void Free();
+	void InitialiseGraph(int vert, int edge);
+	void SetEdge(int x, int y, int w);
 	void ReadGraph();
 	void PrintGraph();
 	void BreadthFirstSearch();
 	void DepthFirstSearch();
 	void TopologicalSort(int i);
+	EdgeNode *GetChild(int index);
 };

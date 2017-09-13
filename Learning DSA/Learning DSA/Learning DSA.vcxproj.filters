@@ -13,6 +13,8 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="Kruskal.cpp" />
+    <ClCompile Include="Heap.cpp" />
+    <ClCompile Include="Prism.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
@@ -26,5 +28,7 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="Kruskal.h" />
+    <ClInclude Include="Heap.h" />
+    <ClInclude Include="Prism.h" />
   </ItemGroup>
 </Project>

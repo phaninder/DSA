@@ -10,6 +10,9 @@
 #include "Search.h"
 #include "Graph.h"
 #include "Heap.h"
+#include "Kruskal.h"
+#include "DisjointSet.h"
+#include "Prism.h"
 
 using namespace std;
 
@@ -24,6 +27,9 @@ void TreeAlgorithm();
 void SearchAlgorithms();
 void GraphAlgorithms();
 void HeapAlgorightms();
+void KruskalAlgorithm();
+void MakeDisjointSet();
+void PerformPrismAlgo();
 
 int main()
 {
@@ -65,7 +71,16 @@ int main()
 	//GraphAlgorithms();
 
 	//Heap Algorithm
-	HeapAlgorightms();
+	//HeapAlgorightms();
+	 
+	//Kruskal Algorithm
+	//KruskalAlgorithm();
+
+	//Disjoin set
+	//MakeDisjointSet();
+
+	//Prism Algo
+	PerformPrismAlgo();
 
 	//system("PAUSE");
 	return 0;
@@ -73,9 +88,220 @@ int main()
 
 void ClearScreen()
 {
-//	system("cls");
+	//	system("cls");
 }
 
+void MakeDisjointSet()
+{
+	int choice = -1;
+	int quitOption = 100;
+
+	DisjointSet set;
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Create a Disjoint set" << endl;
+		cout << "2. MakeSet" << endl;
+		cout << "3. Union Set" << endl;
+		cout << "4. Print Set" << endl;
+		cout << "5. Has Cycle" << endl;
+		cout << "100. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			int noOfVertices;
+			cout << "Enter no of vertices to be inserted" << endl;
+			cin >> noOfVertices;
+			set.CreateSet(noOfVertices);
+			break;
+		}
+		case 2:
+		{
+			ClearScreen();
+			int noOfVertices;
+			cout << "Enter no of vertices to be inserted" << endl;
+			cin >> noOfVertices;
+			for (int i = 0; i < noOfVertices; i++)
+			{
+				int val;
+				cout << "Enter val to be inserted" << endl;
+				cin >> val;
+				set.MakeSet(val);
+			}
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			int x, y;
+			cout << "Enter values to union" << endl;
+			cin >> x >> y;
+			set.Union(x, y);
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			set.PrintSet();
+			break;
+		}
+		case 5:
+		{
+			ClearScreen();
+			int x, y;
+			cout << "Enter values to search for cycle" << endl;
+			cin >> x >> y;
+			cout << ((set.HasCycle(x, y) == 1) ? "Has a Cycle" : "No Cycle is present") << endl;
+			break;
+		}
+
+		default:
+		{
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
+
+
+}
+void KruskalAlgorithm()
+{
+	int choice = -1;
+	int quitOption = 100;
+
+	DisjointSet set;
+	Kruskal krus;
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Initialise Kruskal Algo" << endl;
+		cout << "2. Add edges and weights to Kruskal" << endl;
+		cout << "3. Form Min Span tree" << endl;
+		cout << "4. Print Tree" << endl;
+		cout << "100. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			int x;
+			cout << "Enter no of edges" << endl;
+			cin >> x;
+			krus.InitialiseVal(x);
+			break;
+		}
+		case 2:
+		{
+			ClearScreen();
+			int noOfVertices;
+			cout << "Enter no of edges" << endl;
+			cin >> noOfVertices;
+			cout << "Enter edge and weights" << endl;
+			int weights;
+			int x, y;
+			for (int i = 0; i < noOfVertices; i++)
+			{
+				cin >> x >> y;
+				cin >> weights;
+				krus.SetValToArray(x, y, weights);
+			}
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			krus.FormMinimumSpanTree();
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			krus.PrintMinSpanTree();
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
+}
+
+void PerformPrismAlgo()
+{
+	int choice = -1;
+	int quitOption = 100;
+
+	Prism prism;
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Initialise Prism Algo" << endl;
+		cout << "2. Create Graph" << endl;
+		cout << "3. Form Min Span tree" << endl;
+		cout << "4. Print Tree" << endl;
+		cout << "100. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			int e,v;
+			cout << "Enter no of edges" << endl;
+			cin >> e;
+			cout << "Enter no of vertices" << endl;
+			cin >> v;
+			prism.InitialiseGraph(v,e);
+			break;
+		}
+		case 2:
+		{
+			ClearScreen();
+			prism.CreateGraph();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			prism.ApplyPrismAlgo();
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			prism.PrintMinSpanTree();
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
+}
 void HeapAlgorightms()
 {
 	int choice = -1;

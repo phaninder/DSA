@@ -150,10 +150,12 @@
     <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Kruskal.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MaxSubArray.cpp" />
+    <ClCompile Include="Prism.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Search.cpp" />
     <ClCompile Include="Sort.cpp" />
@@ -164,9 +166,11 @@
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Heap.h" />
     <ClInclude Include="Kruskal.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="MaxSubArray.h" />
+    <ClInclude Include="Prism.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Search.h" />
     <ClInclude Include="Sort.h" />

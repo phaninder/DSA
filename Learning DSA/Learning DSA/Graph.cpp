@@ -54,6 +54,23 @@ void Graph::Free()
 	//delete(graph.edgeNode);
 }
 
+void Graph::InitialiseGraph(int v, int e)
+{
+	graph.noOfVertices = v;
+	//graph.edgeNode = new EdgeNode*[noOfEdge];
+	for (int i = 0; i < e; i++)
+	{
+		graph.edgeNode[i] = new EdgeNode;
+		graph.edgeNode[i]->val = i;
+		graph.edgeNode[i]->next = nullptr;
+	}
+}
+
+void Graph::SetEdge(int x, int y, int w)
+{
+	InsertEdge(x, y, w, false);
+}
+
 void Graph::ReadGraph()
 {
 	int x, y,weight;
@@ -89,6 +106,11 @@ void Graph::ReadGraph()
 		cin >> weight;
 		InsertEdge(x, y, weight, isDirected);
 	}
+}
+
+Graph::EdgeNode *Graph::GetChild(int index)
+{
+	return graph.edgeNode[index]->next;
 }
 
 void Graph::InsertEdge(int x, int y, int weight, bool directed)
