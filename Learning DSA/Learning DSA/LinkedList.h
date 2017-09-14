@@ -15,6 +15,7 @@ private:
 	node * SearchAndReturn(int e);
 public:
 	LinkedList();
+	int GetSize();
 	void Insert(int e);
 	void InsertAt(int index, int e);
 	void Display();
@@ -23,4 +24,5 @@ public:
 	void Delete(int e);
 	void DeleteAt(int index);
 	void Reverse();
+	int GetElementAt(int index);
 };

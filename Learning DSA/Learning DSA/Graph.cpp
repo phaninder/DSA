@@ -58,7 +58,7 @@ void Graph::InitialiseGraph(int v, int e)
 {
 	graph.noOfVertices = v;
 	//graph.edgeNode = new EdgeNode*[noOfEdge];
-	for (int i = 0; i < e; i++)
+	for (int i = 0; i < v; i++)
 	{
 		graph.edgeNode[i] = new EdgeNode;
 		graph.edgeNode[i]->val = i;
@@ -69,6 +69,11 @@ void Graph::InitialiseGraph(int v, int e)
 void Graph::SetEdge(int x, int y, int w)
 {
 	InsertEdge(x, y, w, false);
+}
+
+void Graph::SetEdge(int x, int y, int w,bool directed)
+{
+	InsertEdge(x, y, w, directed);
 }
 
 void Graph::ReadGraph()

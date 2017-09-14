@@ -50,6 +50,7 @@ public:
 	void Free();
 	void InitialiseGraph(int vert, int edge);
 	void SetEdge(int x, int y, int w);
+	void SetEdge(int x, int y, int w,bool directed);
 	void ReadGraph();
 	void PrintGraph();
 	void BreadthFirstSearch();
