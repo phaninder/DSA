@@ -22,12 +22,19 @@ void Stack::Pop()
 
 bool Stack::IsEmpty()
 {
-	return true;
+	if(stackObj->GetSize()<=0)
+		return true;
+	return false;
 }
 
 void Stack::Top()
 {
 	stackObj->DisplayElementAt(0);
+}
+
+int Stack::GetTop()
+{
+	return (stackObj->GetElementAt(0));
 }
 
 void Stack::Display()

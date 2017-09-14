@@ -13,4 +13,5 @@ public:
 	void Top();
 	bool IsEmpty();
 	void Display();
+	int GetTop();
 };

@@ -15,6 +15,7 @@
     <ClCompile Include="Kruskal.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Prism.cpp" />
+    <ClCompile Include="StronglyConnected.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
@@ -30,5 +31,6 @@
     <ClInclude Include="Kruskal.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Prism.h" />
+    <ClInclude Include="StronglyConnected.h" />
   </ItemGroup>
 </Project>

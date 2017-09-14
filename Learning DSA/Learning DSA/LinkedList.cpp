@@ -118,6 +118,27 @@ void LinkedList::DisplayElementAt(int index)
 	cout << "Value is: " << temp->value << endl;
 }
 
+int LinkedList::GetElementAt(int index)
+{
+	if (index > noOfElements)
+	{
+		cout << "Out of range" << endl;
+		return -1;
+	}
+
+	if (noOfElements <= 0)
+	{
+		cout << "List is empty" << endl;
+		return -1;
+	}
+	node *temp = list;
+	for (int i = 0; i <= index; i++)
+	{
+		temp = temp->next;
+	}
+	return (temp->value);
+}
+
 void LinkedList::Search(int e)
 {
 	if (list->next == nullptr)
@@ -193,6 +214,10 @@ void LinkedList::Delete(int e)
 	}
 	else
 		cout << "Element not found in List" << endl;
+}
+int LinkedList::GetSize()
+{
+	return noOfElements;
 }
 
 void LinkedList::DeleteAt(int index)
