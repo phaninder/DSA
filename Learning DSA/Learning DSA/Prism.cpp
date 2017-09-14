@@ -70,7 +70,7 @@ void Prism::PrintMinSpanTree()
 
 int Prism::FindMin()
 {
-	int min = INT32_MAX, index=0;
+	int min = INT32_MAX, index=-1;
 	for (int i = 0; i < noOfVertices; i++)
 	{
 		if (!map[i].taken && map[i].val < min)
@@ -98,8 +98,17 @@ void Prism::ApplyPrismAlgo()
 				SetWeightInMap(temp->val, temp->weight,currentVert);
 			temp = temp->next;
 		}
-		currentVert = FindMin();
-		set[i] = currentVert;
+		int min = FindMin();
+
+		if (min != -1)
+		{
+			currentVert = min;
+			set[i] = currentVert;
+		}
+		else
+		{
+			currentVert = i;
+		}
 	}
 }
 

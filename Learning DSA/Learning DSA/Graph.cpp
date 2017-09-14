@@ -125,7 +125,7 @@ void Graph::InsertEdge(int x, int y, int weight, bool directed)
 
 	if (!directed)
 	{
-		InsertEdge(y, x, 0, true); // pass true for directed to stop recurrsion
+		InsertEdge(y, x, weight, true); // pass true for directed to stop recurrsion
 	}
 	else
 	{
