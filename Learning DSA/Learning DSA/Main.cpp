@@ -14,6 +14,7 @@
 #include "DisjointSet.h"
 #include "Prism.h"
 #include "StronglyConnected.h"
+#include "ArticulationPoint.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ void KruskalAlgorithm();
 void MakeDisjointSet();
 void PerformPrismAlgo();
 void StronglyConnectedAlgo();
-
+void ArticulationPointsAlgo();
 int main()
 {
 	/**********************
@@ -85,7 +86,10 @@ int main()
 	//PerformPrismAlgo();
 
 	//Kosaraju Algo
-	StronglyConnectedAlgo();
+	//StronglyConnectedAlgo();
+
+	//Articulation algo
+	ArticulationPointsAlgo();
 
 	//system("PAUSE");
 	return 0;
@@ -297,6 +301,66 @@ void PerformPrismAlgo()
 			prism.PrintMinSpanTree();
 			break;
 		}
+		default:
+		{
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
+}
+
+void ArticulationPointsAlgo()
+{
+	int choice = -1;
+	int quitOption = 100;
+
+	ArticulationPoint arti;
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Initialise Algo" << endl;
+		cout << "2. Create Graph" << endl;
+		cout << "3. Find Articulation points" << endl;
+		//cout << "4. Show Strongly connected components" << endl;
+		cout << "100. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			int e, v;
+			cout << "Enter no of edges" << endl;
+			cin >> e;
+			cout << "Enter no of vertices" << endl;
+			cin >> v;
+			arti.InitializeGraph(v, e);
+			break;
+		}
+		case 2:
+		{
+			ClearScreen();
+			arti.CreateGraph();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			arti.DepthFirstSearch();
+			break;
+		}
+		/*case 4:
+		{
+			ClearScreen();
+			Ksr.ReverseGraph();
+			break;
+		}*/
 		default:
 		{
 			break;

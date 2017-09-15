@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArticulationPoint.cpp" />
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="DisjointSet.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="StronglyConnected.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArticulationPoint.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="DisjointSet.h" />
     <ClInclude Include="DoublyLinkedList.h" />

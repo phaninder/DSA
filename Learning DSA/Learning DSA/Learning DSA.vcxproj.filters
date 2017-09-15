@@ -16,6 +16,7 @@
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Prism.cpp" />
     <ClCompile Include="StronglyConnected.cpp" />
+    <ClCompile Include="ArticulationPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
@@ -32,5 +33,6 @@
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Prism.h" />
     <ClInclude Include="StronglyConnected.h" />
+    <ClInclude Include="ArticulationPoint.h" />
   </ItemGroup>
 </Project>
