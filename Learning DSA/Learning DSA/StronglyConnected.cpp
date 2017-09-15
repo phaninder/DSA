@@ -115,12 +115,17 @@ void KosarajuAlgo::DFSTwo()
 		int index = stackObj.GetTop();
 		if (index != -1)
 		{
+			//cout << "Strongly connected component" << endl;
 			stackObj.Pop();
-			DepthSearchHelperTwo(index);
+			if (visited[index]==0)
+			{
+				cout << "--Strongly connected component--" << endl;
+				DepthSearchHelperTwo(index);
+			}
 		}
 	}
 
-	for (int i = 0; i < noOfVertices; i++)
+	/*for (int i = 0; i < noOfVertices; i++)
 	{
 		if (visited[i] == 0)
 		{
@@ -128,31 +133,39 @@ void KosarajuAlgo::DFSTwo()
 			DepthSearchHelperTwo(i);
 
 		}
-	}
+	}*/
 }
 
 void KosarajuAlgo::DepthSearchHelperTwo(int index)
 {
-	Graph::EdgeNode *tempNext, *tempCurrent = graph.GetChild(index);
-	//if(temp->next!=nullptr)
-	tempNext = tempCurrent;
-
-	visited[index] = 1;
-
-	while (tempNext != nullptr)
+	if (visited[index] == 0)
 	{
-		int nextIndex = tempNext->val;
-		if (visited[nextIndex] == 0)
+		Graph::EdgeNode *tempNext, *tempCurrent = graph.GetChild(index);
+		//if(temp->next!=nullptr)
+		tempNext = tempCurrent;
+
+		visited[index] = 1;
+
+		while (tempNext != nullptr)
 		{
-			DepthSearchHelper(nextIndex);
+			int nextIndex = tempNext->val;
+			if (visited[nextIndex] == 0)
+			{
+				DepthSearchHelperTwo(nextIndex);
+			}
+			tempNext = tempNext->next;
 		}
-		tempNext = tempNext->next;
+		cout << "" << index << endl;
+
+		tempNext = nullptr;
+		delete(tempNext);
+
+		tempCurrent = nullptr;
+		delete(tempCurrent);
 	}
-	cout << "" << index << endl;
+	else
+	{
+		cout << "--------------------------------" << endl;
 
-	tempNext = nullptr;
-	delete(tempNext);
-
-	tempCurrent = nullptr;
-	delete(tempCurrent);
+	}
 }
