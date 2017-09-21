@@ -15,6 +15,7 @@
 #include "Prism.h"
 #include "StronglyConnected.h"
 #include "ArticulationPoint.h"
+#include "Dijkstra.h"
 
 using namespace std;
 
@@ -34,6 +35,8 @@ void MakeDisjointSet();
 void PerformPrismAlgo();
 void StronglyConnectedAlgo();
 void ArticulationPointsAlgo();
+void Dijkstra();
+
 int main()
 {
 	/**********************
@@ -89,7 +92,10 @@ int main()
 	//StronglyConnectedAlgo();
 
 	//Articulation algo
-	ArticulationPointsAlgo();
+	//ArticulationPointsAlgo();
+
+	//Shortest path using Dijkstra
+	Dijkstra();
 
 	//system("PAUSE");
 	return 0;
@@ -181,6 +187,72 @@ void MakeDisjointSet()
 	}
 
 
+}
+//Shortest Path
+void Dijkstra()
+{
+	int choice = -1;
+	int quitOption = 100;
+
+	DijkstraAlgo dijkstra;
+
+	while (choice != quitOption)
+	{
+		cout << "Options:" << endl;
+		cout << "1. Initialise Dijkstra Algo" << endl;
+		cout << "2. Create Graph" << endl;
+		cout << "3. Find shortest path" << endl;
+		cout << "4. Print path" << endl;
+		cout << "100. Quit" << endl;
+		cout << "Enter your choice:" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			ClearScreen();
+			int e, v;
+			cout << "Enter no of edges" << endl;
+			cin >> e;
+			cout << "Enter no of vertices" << endl;
+			cin >> v;
+			dijkstra.InitialiseGraph(v, e);
+			break;
+		}
+		case 2:
+		{
+			ClearScreen();
+			dijkstra.CreateGraph();
+			break;
+		}
+		case 3:
+		{
+			ClearScreen();
+			int startVert;
+			cout << "Enter starting vertices" << endl;
+			cin >> startVert;
+			dijkstra.FindAllShortestPaths(startVert);
+			break;
+		}
+		case 4:
+		{
+			ClearScreen();
+			int startVert,endVert;
+			cout << "Enter starting and ending vertices" << endl;
+			cin >> startVert>>endVert;
+			dijkstra.PrintShortestPath(startVert,endVert);
+			break;
+		}
+		default:
+		{
+			break;
+		}
+		}
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	}
 }
 void KruskalAlgorithm()
 {
