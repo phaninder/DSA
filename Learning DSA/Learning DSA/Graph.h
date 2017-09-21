@@ -14,6 +14,13 @@ class Graph
 		EdgeNode *next;
 	};
 private:
+	struct TravellerNode
+	{
+		int parent;
+		int totalWeight;
+		TravellerNode *next;
+	};
+
 	enum ColorCode
 	{
 		None = -1,
@@ -32,6 +39,7 @@ private:
 	};
 
 	GraphNode graph;
+	TravellerNode *traveller;
 	int visited[MAXVERTICES] ;
 	int parent[MAXVERTICES];
 	//EdgeNode * temp;
@@ -43,6 +51,8 @@ private:
 	void CheckColor(int x, int y);
 	void PrintColor();
 	void TopologicalSortHelper(int startIndex);
+	void TravelHelper(int index,int verLeft,int prevWeight,int parent,TravellerNode *next);
+	void setVerTaken();
 public:	
 	Graph();
 	Graph(bool directed);
@@ -57,4 +67,5 @@ public:
 	void DepthFirstSearch();
 	void TopologicalSort(int i);
 	EdgeNode *GetChild(int index);
+	void TravelingSalesman(int startIndex);
 };

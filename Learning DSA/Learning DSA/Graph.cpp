@@ -28,10 +28,12 @@ Graph::Graph(bool directed)
 	for (int i = 0; i < MAXVERTICES; i++)
 	{
 		graph.degree[i] = 0;
-		graph.edgeNode[i] = NULL;	
+		graph.edgeNode[i] = NULL;
 		visited[i] = -1;
 		parent[i] = -1;
 	}
+
+
 }
 
 Graph::~Graph()
@@ -50,19 +52,28 @@ void Graph::Free()
 	{
 		delete(graph.edgeNode[i]);
 		graph.edgeNode[i] = nullptr;
+		traveller[i].next = nullptr;
+		delete(traveller[i].next);
 	}
+	delete(traveller);
 	//delete(graph.edgeNode);
 }
 
 void Graph::InitialiseGraph(int v, int e)
 {
 	graph.noOfVertices = v;
+	traveller = new TravellerNode[v];
 	//graph.edgeNode = new EdgeNode*[noOfEdge];
 	for (int i = 0; i < v; i++)
 	{
 		graph.edgeNode[i] = new EdgeNode;
 		graph.edgeNode[i]->val = i;
 		graph.edgeNode[i]->next = nullptr;
+
+		//set traveller node
+		traveller[i].next = nullptr;
+		traveller[i].parent = -1;
+		traveller[i].totalWeight = 0;
 	}
 }
 
@@ -71,25 +82,31 @@ void Graph::SetEdge(int x, int y, int w)
 	InsertEdge(x, y, w, false);
 }
 
-void Graph::SetEdge(int x, int y, int w,bool directed)
+void Graph::SetEdge(int x, int y, int w, bool directed)
 {
 	InsertEdge(x, y, w, directed);
 }
 
 void Graph::ReadGraph()
 {
-	int x, y,weight;
+	int x, y, weight;
 	int noOfVertices, noOfEdge;
 
 	cout << "Enter no of vertices in the graph:" << endl;
 	cin >> noOfVertices;
 	graph.noOfVertices = noOfVertices;
 
+	traveller = new TravellerNode[noOfVertices];
 
 	for (int i = 0; i < noOfVertices; i++)
 	{
 		color[i] = None;
 		graph.degree[i] = 0;
+
+		//set traveller node
+		/*traveller[i].next = nullptr;
+		traveller[i].parent = -1;
+		traveller[i].totalWeight = 0;*/
 	}
 
 	cout << "Enter no of Edges in the graph:" << endl;
@@ -157,7 +174,7 @@ void Graph::PrintGraph()
 		temp = temp->next;
 		while (temp != NULL)
 		{
-			cout <<currentVert<< " "<< temp->val<<"-"<<temp->weight<<endl;
+			cout << currentVert << " " << temp->val << "-" << temp->weight << endl;
 			temp = temp->next;
 		}
 		//cout << endl;
@@ -309,7 +326,7 @@ void Graph::DepthFirstSearchHelper(int startIndex)
 		{
 			cout << "Cycle found between at vertice" << tempNext->val << endl;
 		}
-			//return;
+		//return;
 		tempNext = tempNext->next;
 	}
 	currentVertices[startIndex] = -1;
@@ -328,9 +345,9 @@ void PrintStack()
 {
 	cout << "Size of stack:" << tpStack.size() << endl;
 	cout << "Elements in stack:" << endl;
-	while(!tpStack.empty())
+	while (!tpStack.empty())
 	{
-		cout << tpStack.top()<<endl;
+		cout << tpStack.top() << endl;
 		tpStack.pop();
 	}
 }
@@ -366,7 +383,7 @@ void Graph::TopologicalSortHelper(int startIndex)
 	nextNode = temp->next;
 	while (nextNode != nullptr)
 	{
-		if(visited[(nextNode)->val]!=1)
+		if (visited[(nextNode)->val] != 1)
 			TopologicalSortHelper((nextNode)->val);//send the next node for sorting
 		nextNode = nextNode->next;
 	}
@@ -377,4 +394,69 @@ void Graph::TopologicalSortHelper(int startIndex)
 
 	nextNode = nullptr;
 	delete(nextNode);
+}
+
+int noOfVerticesLeft;
+bool *vertTaken;
+
+void Graph::setVerTaken()
+{
+	vertTaken = new bool[graph.noOfVertices];
+	for (int i = 0; i < graph.noOfVertices; i++)
+	{
+		vertTaken[i] = false;
+	}
+}
+
+void Graph::TravelingSalesman(int startIndex)
+{
+	noOfVerticesLeft = graph.noOfVertices;
+	setVerTaken();
+	//set the starting node
+	//for (int i = 0; i < graph.noOfVertices; i++)
+	{
+		int i = 0;
+		EdgeNode *temp = GetChild(startIndex);
+		//vertTaken[startIndex] = true;
+		while (temp != nullptr)
+		{
+			traveller[i].parent = startIndex;
+			traveller[i].totalWeight = 0;
+			vertTaken[startIndex] = true;
+			TravelHelper(temp->val, noOfVerticesLeft - 1, temp->weight, startIndex, traveller[i].next);
+			setVerTaken();
+			i++;
+			temp = temp->next;
+		}
+	}
+
+	delete(vertTaken);
+	vertTaken = nullptr;
+}
+
+void Graph::TravelHelper(int index, int verLeft, int prevWeight, int parent, TravellerNode *next)
+{
+	TravellerNode *helper = new TravellerNode[verLeft]; //delete this
+	EdgeNode *temp;
+
+	temp = GetChild(index);
+	while (temp != nullptr)
+	{
+		vertTaken[parent] = true;
+		if (!vertTaken[temp->val])
+		{
+			vertTaken[temp->val] = true;
+			helper[temp->val].parent = parent;
+			helper[temp->val].totalWeight = prevWeight;
+			TravelHelper(temp->val, (verLeft - 1), (temp->weight + prevWeight), index, helper[temp->val].next);
+		}
+		//setVerTaken();
+		temp = temp->next;
+	}
+
+	next = helper;
+	temp = nullptr;
+	delete(temp);
+	helper = nullptr;
+	delete(helper);
 }

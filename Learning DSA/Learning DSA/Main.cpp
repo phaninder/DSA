@@ -74,7 +74,7 @@ int main()
 	//TreeAlgorithm();
 
 	// Tree Algorithms
-	//GraphAlgorithms();
+	GraphAlgorithms();
 
 	//Heap Algorithm
 	//HeapAlgorightms();
@@ -95,7 +95,7 @@ int main()
 	//ArticulationPointsAlgo();
 
 	//Shortest path using Dijkstra
-	Dijkstra();
+	//Dijkstra();
 
 	//system("PAUSE");
 	return 0;
@@ -641,9 +641,9 @@ void SearchAlgorithms()
 void GraphAlgorithms()
 {
 	int choice = -1;
-	int quitOption = 5;
+	int quitOption = 100;
 
-	Graph graphAlgo(true);
+	Graph graphAlgo;
 
 	while (choice != quitOption)
 	{
@@ -652,7 +652,8 @@ void GraphAlgorithms()
 		cout << "2. Print Graph values" << endl;
 		cout << "3. Breadth First Search" << endl;
 		cout << "4. Depth First Search" << endl;
-		cout << "5. Quit" << endl;
+		cout << "5. Shortest path" << endl;
+		cout << "100. Quit" << endl;
 		cout << "Enter your choice:" << endl;
 		cin >> choice;
 
@@ -686,6 +687,12 @@ void GraphAlgorithms()
 		case 5:
 		{
 			//ClearScreen();
+			//graphAlgo.Free();
+			graphAlgo.TravelingSalesman(0);
+			break;
+		}
+		case 100:
+		{
 			graphAlgo.Free();
 			break;
 		}
