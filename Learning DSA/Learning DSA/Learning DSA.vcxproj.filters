@@ -18,6 +18,8 @@
     <ClCompile Include="StronglyConnected.cpp" />
     <ClCompile Include="ArticulationPoint.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
+    <ClCompile Include="KnapsackProblem.cpp" />
+    <ClCompile Include="LongestConsecutiveCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />

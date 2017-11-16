@@ -37,8 +37,86 @@ void StronglyConnectedAlgo();
 void ArticulationPointsAlgo();
 void Dijkstra();
 
+void ArrayRotation()
+{
+		//code
+		int noOfTestCases;
+		int *noOfVar;
+		int **val;//[noOfTestCases];
+		cin >> noOfTestCases;
+
+		noOfVar = new int[noOfTestCases];
+		val = new int *[noOfTestCases];
+
+		for (int i = 0; i<noOfTestCases; i++)
+		{
+			//get the values
+			cin >> noOfVar[i];
+			val[i] = new int[noOfVar[i]];
+			for (int j = 0; j<noOfVar[i]; j++)
+			{
+				cin >> val[i][j];
+			}
+		}
+
+		//Array rotation
+		for (int i = 0; i<noOfTestCases; i++)
+		{
+			int count = noOfVar[i];
+			for (int j = 0; j<count; j++, noOfVar[i]--)
+			{
+				int *tempArray = new int[noOfVar[i]];
+				tempArray[0] = val[i][noOfVar[i] - 1];
+				//Rotate array elements
+				for (int k = 0; k<noOfVar[i]; k++)
+				{
+					tempArray[k + 1] = val[i][k];
+				}
+				//copy to original array
+				val[i] = tempArray;
+
+				tempArray = NULL;
+				delete (tempArray);
+				if (noOfVar[i]>=j)
+				{
+					// delete the nth elem from last
+					int swapIndex = noOfVar[i] - j - 1;
+					int lastIndex = noOfVar[i] - 1;
+					if (swapIndex>0)
+					{
+						// swap with last element
+						int temp = val[i][swapIndex];
+						val[i][swapIndex] = val[i][lastIndex];
+						val[i][lastIndex] = temp;
+					}
+					else
+					{
+						//delete first index
+						int temp = val[i][0];
+						val[i][0] = val[i][lastIndex];
+						val[i][lastIndex] = temp;
+					}
+				}
+				else
+				{
+					cout << val[i][0]<<endl;
+					break;
+				} 
+			}
+		}
+}
+
+void Knapsack();
+void LongestConsCharacter();
+void LongestCommonSubSequence();
 int main()
 {
+	//Knapsack();
+	//LongestConsCharacter();
+	LongestCommonSubSequence();
+	
+	//ArrayRotation();
+	//cout << "Hello" << endl;
 	/**********************
 	*Max Sub array problem*
 	**********************/
@@ -74,7 +152,7 @@ int main()
 	//TreeAlgorithm();
 
 	// Tree Algorithms
-	GraphAlgorithms();
+	//GraphAlgorithms();
 
 	//Heap Algorithm
 	//HeapAlgorightms();
@@ -97,7 +175,7 @@ int main()
 	//Shortest path using Dijkstra
 	//Dijkstra();
 
-	//system("PAUSE");
+	system("PAUSE");
 	return 0;
 }
 

@@ -153,8 +153,10 @@
     <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Heap.cpp" />
+    <ClCompile Include="KnapsackProblem.cpp" />
     <ClCompile Include="Kruskal.cpp" />
     <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="LongestConsecutiveCharacter.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MaxSubArray.cpp" />
     <ClCompile Include="Prism.cpp" />

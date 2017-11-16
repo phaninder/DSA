@@ -16,6 +16,7 @@ class Graph
 private:
 	struct TravellerNode
 	{
+		int val;
 		int parent;
 		int totalWeight;
 		TravellerNode *next;
@@ -51,7 +52,8 @@ private:
 	void CheckColor(int x, int y);
 	void PrintColor();
 	void TopologicalSortHelper(int startIndex);
-	void TravelHelper(int index,int verLeft,int prevWeight,int parent,TravellerNode *next);
+	TravellerNode TravelHelper(int index,int verLeft,int prevWeight,int parent);
+	TravellerNode helper;
 	void setVerTaken();
 public:	
 	Graph();
@@ -68,4 +70,5 @@ public:
 	void TopologicalSort(int i);
 	EdgeNode *GetChild(int index);
 	void TravelingSalesman(int startIndex);
+	void PrintTravell();
 };

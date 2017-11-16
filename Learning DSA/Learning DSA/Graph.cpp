@@ -420,10 +420,11 @@ void Graph::TravelingSalesman(int startIndex)
 		//vertTaken[startIndex] = true;
 		while (temp != nullptr)
 		{
+			traveller[i].val = startIndex;
 			traveller[i].parent = startIndex;
 			traveller[i].totalWeight = 0;
 			vertTaken[startIndex] = true;
-			TravelHelper(temp->val, noOfVerticesLeft - 1, temp->weight, startIndex, traveller[i].next);
+			traveller[i].next = &(TravelHelper(temp->val, noOfVerticesLeft - 1, temp->weight, startIndex));
 			setVerTaken();
 			i++;
 			temp = temp->next;
@@ -432,31 +433,54 @@ void Graph::TravelingSalesman(int startIndex)
 
 	delete(vertTaken);
 	vertTaken = nullptr;
+	PrintTravell();
 }
 
-void Graph::TravelHelper(int index, int verLeft, int prevWeight, int parent, TravellerNode *next)
+void Graph::PrintTravell()
 {
-	TravellerNode *helper = new TravellerNode[verLeft]; //delete this
+	TravellerNode *next;
+	for (int i = 0; i < graph.noOfVertices; i++)
+	{
+		next = traveller[i].next;
+		cout << "" << traveller[i].val;
+		while (next != nullptr)
+		{
+			cout << "--" << next->val<<" W "<<next->totalWeight<<" P "<<next->parent<<"--";
+			next = next->next;
+		}
+		cout << endl;
+	}
+}
+
+Graph::TravellerNode Graph::TravelHelper(int index, int verLeft, int prevWeight, int parent)
+{
+	TravellerNode helper;
+
 	EdgeNode *temp;
 
 	temp = GetChild(index);
+
+	helper.val = parent;
+	helper.parent = index;
+	helper.totalWeight = prevWeight;
+	helper.next = nullptr;
+
+	vertTaken[parent] = true;
 	while (temp != nullptr)
 	{
-		vertTaken[parent] = true;
 		if (!vertTaken[temp->val])
 		{
 			vertTaken[temp->val] = true;
-			helper[temp->val].parent = parent;
-			helper[temp->val].totalWeight = prevWeight;
-			TravelHelper(temp->val, (verLeft - 1), (temp->weight + prevWeight), index, helper[temp->val].next);
+			helper.val = temp->val;
+			helper.parent = parent;
+			helper.totalWeight = prevWeight;
+			helper.next = &(TravelHelper(temp->val, (verLeft - 1), (temp->weight + prevWeight), index));
 		}
 		//setVerTaken();
 		temp = temp->next;
 	}
-
-	next = helper;
 	temp = nullptr;
 	delete(temp);
-	helper = nullptr;
-	delete(helper);
+
+	return helper;
 }
